@@ -19,17 +19,9 @@
 
     <body>
         <div id="container">
-            
-                <p><a href="/game-1254115464.html"></a></p>
-            
-                <p><a href="/1e0mmqLfngSY6b.html"></a></p>
-            
-                <p><a href="/kickups.html"></a></p>
-            
-                <p><a href="/eggs.html"></a></p>
-            
-                <p><a href="/helicopter.html"></a></p>
-            
+            {% for link  in links %}
+                <p><a href="/{{ link.link }}.html">{{ link.title }}</a></p>
+            {% endfor %}
 
         </div>
     </body>
