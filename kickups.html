@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html data-ruffle-optout>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ruffle Web Demo</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Lato"
+            rel="stylesheet"
+        />
+        <style>
+            #container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: "Lato", sans-serif;
+                background-color: black;
+                height: 50vh;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container">
+
+        </div>
+            <script>
+                window.RufflePlayer = window.RufflePlayer || {};
+            
+                window.addEventListener("DOMContentLoaded", async () => {
+                    let ruffle = window.RufflePlayer.newest();
+                    window.player = ruffle.create_player();
+                   
+                    let container = document.getElementById("container");
+                    container.appendChild(player);
+
+                    player.setAttribute("width", 1000)
+                    player.setAttribute("height", 1000 )
+
+                    await player.stream_swf_url("/swfs/kickups.swf");
+
+                    setTimeout(() => {
+                        player.play_button_clicked()
+                    }, 1000);
+                });
+            </script>
+
+        <script src="/index.js"></script>
+    </body>
+</html>
