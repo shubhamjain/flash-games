@@ -25,15 +25,12 @@
     justify-content: center;
          
             }
-            #container2{
-                color: white;
-            }
+
         </style>
     </head>
 
     <body><div id="container">
-        <div id="container2" >
-            The Game can take upto 8 seconds to load! Please wait ...
+        <div id="container2">
         </div></div>
             <script>
                 window.RufflePlayer = window.RufflePlayer || {};
@@ -59,7 +56,6 @@
 
                     await player.stream_swf_url("/swfs/{{ link }}.swf");
 
-                    document.querySelector("#container2").innerText = ""
 
                 });
             </script>
