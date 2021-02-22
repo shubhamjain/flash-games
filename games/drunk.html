@@ -16,10 +16,16 @@
                 align-items: center;
                 justify-content: center;
                 font-family: "Lato";
+                color:white
+
             }
             #container {
+                text-align: center;
+                margin-top: 20px;
+            }
+            #container2 {
                 width: 100vh;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +35,8 @@
         </style>
     </head>
 
-    <body><div id="container">
+    <body>
+        <div><div id="container">Games may takes upto 10 seconds to load...</div>
         <div id="container2">
         </div></div>
             <script>
@@ -55,8 +62,12 @@
                     player.setAttribute("height", window.innerHeight / factor)
 
                     await player.stream_swf_url("/swfs/1e0mmqLfngSY6b.swf");
+                    document.querySelector("#container").remove()
 
 
+                    setTimeout(() => {
+                        player.play_button_clicked()
+                    }, 1000);
                 });
             </script>
 
