@@ -44,7 +44,7 @@
             
                 window.addEventListener("DOMContentLoaded", async () => {
                     let ruffle = window.RufflePlayer.newest();
-                    window.player = ruffle.create_player();
+                    window.player = ruffle.createPlayer();
                    
                     let container = document.getElementById("container2");
                     container.appendChild(player);
@@ -57,17 +57,15 @@
                     if( window.screen.availWidth > 480  && window.screen.availWidth < 1024 ) {
                         factor = 1.5
                     }
-
                     player.setAttribute("width", window.innerWidth / factor)
                     player.setAttribute("height", window.innerHeight / factor)
 
-                    await player.stream_swf_url("/swfs/eggs.swf");
+                    await player.load("/swfs/eggs.swf");
                     document.querySelector("#container").remove()
 
-
                     setTimeout(() => {
-                        player.play_button_clicked()
-                    }, 2000);
+                        player.playButton.click()
+                    }, 50);
                 });
             </script>
 

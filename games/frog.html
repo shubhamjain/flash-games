@@ -16,31 +16,35 @@
                 align-items: center;
                 justify-content: center;
                 font-family: "Lato";
+                color:white
+
             }
             #container {
+                text-align: center;
+                margin-top: 20px;
+            }
+            #container2 {
                 width: 100vh;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
          
             }
-            #container2{
-                color: white;
-            }
+
         </style>
     </head>
 
-    <body><div id="container">
-        <div id="container2" >
-            The Game can take upto 8 seconds to load! Please wait ...
+    <body>
+        <div><div id="container">Games may takes upto 10 seconds to load...</div>
+        <div id="container2">
         </div></div>
             <script>
                 window.RufflePlayer = window.RufflePlayer || {};
             
                 window.addEventListener("DOMContentLoaded", async () => {
                     let ruffle = window.RufflePlayer.newest();
-                    window.player = ruffle.create_player();
+                    window.player = ruffle.createPlayer();
                    
                     let container = document.getElementById("container2");
                     container.appendChild(player);
@@ -53,14 +57,15 @@
                     if( window.screen.availWidth > 480  && window.screen.availWidth < 1024 ) {
                         factor = 1.5
                     }
-
                     player.setAttribute("width", window.innerWidth / factor)
                     player.setAttribute("height", window.innerHeight / factor)
 
-                    await player.stream_swf_url("/swfs/bloons.swf");
+                    await player.load("/swfs/frog_leap.swf");
+                    document.querySelector("#container").remove()
 
-                    document.querySelector("#container2").innerText = ""
-
+                    setTimeout(() => {
+                        player.playButton.click()
+                    }, 50);
                 });
             </script>
 
