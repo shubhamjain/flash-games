@@ -6,6 +6,7 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const outputDirectory = join(projectRoot, "dist");
 const gamesDirectory = join(outputDirectory, "games");
 const swfsDirectory = join(projectRoot, "swfs");
+const runtimeSourceDirectory = join(projectRoot, "ruffle-runtime");
 
 const escapeHtml = (value) =>
     String(value)
@@ -233,18 +234,17 @@ async function findFirstFile(paths) {
 }
 
 async function copyRuntime() {
-    const packageDirectory = join(projectRoot, "node_modules", "@ruffle-rs", "ruffle");
     const runtimeDirectory = join(outputDirectory, "ruffle");
 
     try {
-        await stat(packageDirectory);
+        await stat(runtimeSourceDirectory);
     } catch {
-        throw new Error("Ruffle is not installed. Run npm install before building the site.");
+        throw new Error("Ruffle runtime is missing. Run npm run fetch:ruffle and commit ruffle-runtime/.");
     }
 
     await mkdir(runtimeDirectory, { recursive: true });
-    const packageFiles = await readdir(packageDirectory, { withFileTypes: true });
-    const runtimeFiles = packageFiles.filter(
+    const sourceFiles = await readdir(runtimeSourceDirectory, { withFileTypes: true });
+    const runtimeFiles = sourceFiles.filter(
         (entry) => entry.isFile() && /\.(?:js|wasm)$/i.test(entry.name),
     );
 
@@ -253,7 +253,7 @@ async function copyRuntime() {
     }
 
     await Promise.all(
-        runtimeFiles.map(({ name }) => cp(join(packageDirectory, name), join(runtimeDirectory, name))),
+        runtimeFiles.map(({ name }) => cp(join(runtimeSourceDirectory, name), join(runtimeDirectory, name))),
     );
 }
 
