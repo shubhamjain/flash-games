@@ -1,34 +1,68 @@
-[{
-  "link": "game-1254115464",
+[
+{
+  "swf": "game-1254115464.swf",
   "permalink": "missionaries",
-  "game_title": "Missonaries & Cannibals"  
+  "game_title": "Missonaries & Cannibals",
+  "thumbnail": "https://i.magecdn.com/d2b508/f196d3_missionaries_and_canibals"
 }, {
-    "link": "1e0mmqLfngSY6b",
+    "swf": "1e0mmqLfngSY6b.swf",
     "permalink": "drunk",
-    "game_title": "Drunk Man Walking"  
+    "game_title": "Drunk Man Walking",
+    "thumbnail": "https://i.magecdn.com/d2b508/98af13_drunk_man_walking"
 }, {
-    "link": "kickups",
+    "swf": "kickups.swf",
     "permalink": "kickups",
-    "game_title": "Kickups"  
+    "game_title": "Kickups",
+    "thumbnail": "https://i.magecdn.com/d2b508/86a1db_kickups" 
 }, {
-    "link": "eggs",
+    "swf": "eggs.swf",
     "permalink": "eggs",
-    "game_title": "Eggs"  
+    "game_title": "Eggs",
+    "thumbnail": "https://i.magecdn.com/d2b508/543158_eggs"
 }, {
-    "link": "helicopter",
+    "swf": "helicopter.swf",
     "permalink": "helicopter",
-    "game_title": "Copter"  
+    "game_title": "Copter",
+    "thumbnail": "https://i.magecdn.com/d2b508/600adb_copter"
 }, {
-    "link": "frog_leap",
+    "swf": "frog_leap.swf",
     "permalink": "frog",
-    "game_title": "Frog Leap"  
+    "game_title": "Frog Leap",
+    "thumbnail": "https://i.magecdn.com/d2b508/a2604c_frog_leap"
 },{
-    "link": "stanskates",
+    "swf": "stanskates.swf",
     "permalink": "stanskates",
-    "game_title": "Stan Skates"  
+    "game_title": "Stan Skates",
+    "thumbnail": "https://i.magecdn.com/d2b508/857c65_stan_skates"
 },{
-    "link": "vcricket1",
+    "swf": "vcricket1.swf",
     "permalink": "vcricket1",
-    "game_title": "Virtual Cricket"  
+    "game_title": "Virtual Cricket",
+    "thumbnail": "https://i.magecdn.com/d2b508/c8a10b_virtual_cricket"
+},{
+    "swf": "00000001.swf",
+    "permalink": "whip-the-worker",
+    "game_title": "Whip the Worker",
+    "thumbnail": "https://i.magecdn.com/d2b508/c415ab_whip_the_worker"
+},{
+    "swf": "bombay-taxi.swf",
+    "permalink": "bombay-taxi",
+    "game_title": "Bombay Taxi",
+    "thumbnail": "https://i.magecdn.com/d2b508/5a40b0_bombay_taxi"
+},{
+    "swf": "bombay-taxi-2.swf",
+    "permalink": "bombay-taxi-2",
+    "game_title": "Bombay Taxi 2",
+    "thumbnail": "https://i.magecdn.com/d2b508/2aa9ea_bombay_taxi_2"
+},{
+    "swf": "spec-ops-war-on-terrorism-2001.swf",
+    "permalink": "sec-ops",
+    "game_title": "Sec Ops: War on Terrorism",
+    "thumbnail": "https://i.magecdn.com/d2b508/a95e10_sec_ops"
+},{
+    "swf": "kaun-banega-crorepati2.swf",
+    "permalink": "kbc",
+    "game_title": "Kaun Banega Crorepati",
+    "thumbnail": "https://i.magecdn.com/d2b508/b23a0c_kbc"
 }
 ]
