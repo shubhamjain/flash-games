@@ -67,7 +67,7 @@ function renderIndex(games) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#0b1020">
-        <title>Ruffle Arcade — Flash games</title>
+        <title>Nostalgic Flash Games</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -141,44 +141,44 @@ function renderGame({ game_title, swf }) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#0b1020">
-        <title>${title} — Ruffle Arcade</title>
+        <title>${title} Flash Game</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
             :root { color-scheme: dark; --ink: #e8ebf2; --muted: #8f98ae; --line: rgba(255,255,255,.09); --panel: rgba(25,30,44,.78); --accent: #a8dfcf; }
             * { box-sizing: border-box; }
-            body { background: #111522; color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; min-height: 100vh; }
+            body { background: #111522; color: var(--ink); display: flex; flex-direction: column; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; min-height: 100vh; min-height: 100dvh; }
             body::before { background: radial-gradient(circle at 12% 0%, rgba(99,102,241,.12), transparent 32%), radial-gradient(circle at 88% 8%, rgba(45,212,191,.08), transparent 28%); content: ""; inset: 0; pointer-events: none; position: fixed; z-index: -1; }
-            .shell { margin: 0 auto; max-width: 1240px; padding: 0 28px; }
+            .shell { display: flex; flex: 1; flex-direction: column; margin: 0 auto; max-width: 1240px; min-height: 100vh; min-height: 100dvh; padding: 0 28px; width: 100%; }
             .topbar { align-items: center; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; min-height: 76px; }
             .brand { align-items: center; color: var(--ink); display: inline-flex; font-size: 14px; font-weight: 700; gap: 11px; letter-spacing: .16em; text-decoration: none; }
             .brand-mark { align-items: center; background: var(--accent); border-radius: 9px; color: #0b1020; display: inline-flex; font-size: 15px; height: 32px; justify-content: center; transform: rotate(-7deg); width: 32px; }
-            .back { color: var(--muted); display: block; font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .08em; margin: 0 0 30px; text-align: center; text-decoration: none; text-transform: uppercase; }
+            .back { color: var(--muted); display: block; font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .08em; margin: 0; text-align: center; text-decoration: none; text-transform: uppercase; }
             .back:hover { color: var(--accent); }
-            main { padding: 44px 0 56px; }
+            main { display: grid; flex: 1; gap: 24px; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; padding: 24px 0; }
             .crumb { color: var(--muted); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .12em; margin: 0 0 14px; text-align: center; text-transform: uppercase; }
             .game-heading { align-items: center; display: flex; flex-direction: column; gap: 14px; justify-content: center; margin-bottom: 22px; text-align: center; }
             h1 { font-size: clamp(30px, 4.5vw, 54px); font-weight: 600; letter-spacing: -.045em; line-height: 1; margin: 0; }
             .status { border: 1px solid rgba(141,245,208,.4); border-radius: 99px; color: var(--accent); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .1em; padding: 8px 11px; text-transform: uppercase; white-space: nowrap; }
-            #player-frame { background: #050811; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 30px 80px rgba(0,0,0,.35); overflow: hidden; padding: 10px; }
+            #player-frame { align-self: center; background: #050811; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 30px 80px rgba(0,0,0,.35); justify-self: center; overflow: hidden; padding: 10px; width: min(100%, 1000px); }
             #player-container { align-items: center; background: #02040a; border-radius: 13px; display: flex; height: min(70vh, 720px); justify-content: center; min-height: 360px; overflow: hidden; position: relative; width: 100%; }
             #player-container::before { background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 32px 32px; content: ""; inset: 0; pointer-events: none; position: absolute; }
             ruffle-player { max-height: 100%; max-width: 100%; position: relative; }
             #loading { color: var(--muted); font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .08em; margin: 0; position: absolute; text-align: center; text-transform: uppercase; z-index: 1; }
             #loading.error { color: #ff9b9b; }
-            .game-footer { align-items: center; color: var(--muted); display: flex; flex-direction: column; font-family: "DM Mono", monospace; font-size: 10px; gap: 9px; justify-content: center; letter-spacing: .07em; padding-top: 18px; text-align: center; text-transform: uppercase; }
-            @media (max-width: 560px) { .shell { padding: 0 18px; } main { padding-top: 34px; } #player-frame { padding: 6px; } #player-container { min-height: 260px; } .game-footer { line-height: 1.5; } }
+            .game-footer { align-items: center; color: var(--muted); display: flex; flex-direction: column; font-family: "DM Mono", monospace; font-size: 10px; gap: 9px; justify-content: center; letter-spacing: .07em; text-align: center; text-transform: uppercase; }
+            @media (max-width: 560px) { .shell { padding: 0 18px; } main { gap: 18px; padding: 18px 0; } #player-frame { padding: 6px; } #player-container { min-height: 260px; } .game-footer { line-height: 1.5; } }
         </style>
     </head>
     <body>
         <div class="shell">
             <main>
-                <a class="back" href="/">← Back to library</a>
+                <header><a class="back" href="/">← Back to library</a></header>
                 <section id="player-frame" aria-label="${title} game player">
                     <div id="player-container"><p id="loading">Loading game · please wait</p></div>
                 </section>
-                <div class="game-footer"><span>Audio may start muted by your browser</span><span>Ruffle emulation</span></div>
+                <footer class="game-footer"><span>Audio may start muted by your browser</span><span>Ruffle emulation</span></footer>
             </main>
         </div>
         <script src="/ruffle/ruffle.js"></script>
