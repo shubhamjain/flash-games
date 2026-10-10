@@ -68,6 +68,8 @@ function renderIndex(games) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#0b1020">
         <title>Nostalgic Flash Games</title>
+        <meta name="description" content="Play a hand-picked collection of nostalgic Flash games online in your browser, powered by Ruffle.">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -133,6 +135,7 @@ ${cards}
 
 function renderGame({ game_title, swf }) {
     const title = escapeHtml(game_title);
+    const description = escapeHtml(`Play ${game_title} online in your browser. This archived Flash game runs with Ruffle emulation.`);
     const swfPath = `/swfs/${swf}`;
 
     return `<!doctype html>
@@ -141,7 +144,9 @@ function renderGame({ game_title, swf }) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#0b1020">
-        <title>${title} Flash Game</title>
+        <title>Play ${title} Online | Nostalgic Flash Games</title>
+        <meta name="description" content="${description}">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -158,7 +163,7 @@ function renderGame({ game_title, swf }) {
             .back:hover { color: var(--accent); }
             main { display: grid; flex: 1; gap: 24px; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; padding: 24px 0; }
             .crumb { color: var(--muted); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .12em; margin: 0 0 14px; text-align: center; text-transform: uppercase; }
-            .game-heading { align-items: center; display: flex; flex-direction: column; gap: 14px; justify-content: center; margin-bottom: 22px; text-align: center; }
+            .game-heading { align-items: center; display: flex; flex-direction: column; gap: 14px; justify-content: center; margin: 40px 20px; text-align: center; }
             h1 { font-size: clamp(30px, 4.5vw, 54px); font-weight: 600; letter-spacing: -.045em; line-height: 1; margin: 0; }
             .status { border: 1px solid rgba(141,245,208,.4); border-radius: 99px; color: var(--accent); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .1em; padding: 8px 11px; text-transform: uppercase; white-space: nowrap; }
             #player-frame { align-self: center; background: #050811; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 30px 80px rgba(0,0,0,.35); justify-self: center; overflow: hidden; padding: 10px; width: min(100%, 1000px); }
@@ -174,8 +179,14 @@ function renderGame({ game_title, swf }) {
     <body>
         <div class="shell">
             <main>
-                <header><a class="back" href="/">← Back to library</a></header>
+                <header>
+                    <a class="back" href="/">← Back to library</a>
+                </header>
                 <section id="player-frame" aria-label="${title} game player">
+                    <div class="game-heading">
+                        <h1>${title}</h1>
+                        <p class="crumb">${description}</p>
+                    </div>
                     <div id="player-container"><p id="loading">Loading game · please wait</p></div>
                 </section>
                 <footer class="game-footer"><span>Audio may start muted by your browser</span><span>Ruffle emulation</span></footer>
@@ -277,6 +288,7 @@ export async function build() {
             filter: (source) => !basename(source).startsWith("."),
             recursive: true,
         }),
+        cp(join(projectRoot, "favicon.svg"), join(outputDirectory, "favicon.svg")),
         copyRuntime(),
     ]);
     await writeFile(join(outputDirectory, "_headers"), "/ruffle/*.wasm\n  Content-Type: application/wasm\n");
