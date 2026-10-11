@@ -69,7 +69,7 @@ function renderIndex(games) {
         <meta name="theme-color" content="#0b1020">
         <title>Nostalgic Flash Games</title>
         <meta name="description" content="Play a hand-picked collection of nostalgic Flash games online in your browser, powered by Ruffle.">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -146,50 +146,47 @@ function renderGame({ game_title, swf }) {
         <meta name="theme-color" content="#0b1020">
         <title>Play ${title} Online | Nostalgic Flash Games</title>
         <meta name="description" content="${description}">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
-            :root { color-scheme: dark; --ink: #e8ebf2; --muted: #8f98ae; --line: rgba(255,255,255,.09); --panel: rgba(25,30,44,.78); --accent: #a8dfcf; }
+            :root { color-scheme: dark; --ink: #e8ebf2; --muted: #8f98ae; --line: rgba(255,255,255,.1); --accent: #a8dfcf; }
             * { box-sizing: border-box; }
-            body { background: #111522; color: var(--ink); display: flex; flex-direction: column; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; min-height: 100vh; min-height: 100dvh; }
-            body::before { background: radial-gradient(circle at 12% 0%, rgba(99,102,241,.12), transparent 32%), radial-gradient(circle at 88% 8%, rgba(45,212,191,.08), transparent 28%); content: ""; inset: 0; pointer-events: none; position: fixed; z-index: -1; }
-            .shell { display: flex; flex: 1; flex-direction: column; margin: 0 auto; max-width: 1240px; min-height: 100vh; min-height: 100dvh; padding: 0 28px; width: 100%; }
-            .topbar { align-items: center; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; min-height: 76px; }
-            .brand { align-items: center; color: var(--ink); display: inline-flex; font-size: 14px; font-weight: 700; gap: 11px; letter-spacing: .16em; text-decoration: none; }
-            .brand-mark { align-items: center; background: var(--accent); border-radius: 9px; color: #0b1020; display: inline-flex; font-size: 15px; height: 32px; justify-content: center; transform: rotate(-7deg); width: 32px; }
-            .back { color: var(--muted); display: block; font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .08em; margin: 0; text-align: center; text-decoration: none; text-transform: uppercase; }
+            body { background: #10131e; color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; min-height: 100vh; min-height: 100dvh; }
+            body::before { background: radial-gradient(ellipse at 0% 0%, rgba(99,102,241,.14), transparent 45%), radial-gradient(ellipse at 100% 0%, rgba(45,212,191,.09), transparent 40%); content: ""; inset: 0; pointer-events: none; position: fixed; z-index: -1; }
+            .shell { margin: 0 auto; max-width: 1680px; padding: clamp(36px, 5vw, 80px) clamp(18px, 2.35vw, 40px) clamp(40px, 7vw, 112px); width: 100%; }
+            .game-heading { padding: 0 16px; margin: 0 auto 40px auto; width: min(100%, 960px); }
+            h1 { font-size: clamp(32px, 1.75vw, 48px); font-weight: 650; line-height: 1.1; margin: 0 0 12px; }
+            .crumb { color: var(--muted); font-family: "DM Mono", monospace; font-size: 14px; line-height: 1.7; margin: 0; text-transform: uppercase; }
+            #player-frame { background: #060910; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,.3); margin: 0 auto; overflow: hidden; width: min(100%, 960px); }
+            .player-toolbar { padding: 18px 16px; }
+            .back { color: var(--muted); display: inline-flex; align-items: center; font-family: "DM Mono", monospace; font-size: 12px; gap: 10px; letter-spacing: .08em; line-height: 1.5; text-decoration: none; text-transform: uppercase; }
             .back:hover { color: var(--accent); }
-            main { display: grid; flex: 1; gap: 24px; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; padding: 24px 0; }
-            .crumb { color: var(--muted); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .12em; margin: 0 0 14px; text-align: center; text-transform: uppercase; }
-            .game-heading { align-items: center; display: flex; flex-direction: column; gap: 14px; justify-content: center; margin: 40px 20px; text-align: center; }
-            h1 { font-size: clamp(30px, 4.5vw, 54px); font-weight: 600; letter-spacing: -.045em; line-height: 1; margin: 0; }
-            .status { border: 1px solid rgba(141,245,208,.4); border-radius: 99px; color: var(--accent); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .1em; padding: 8px 11px; text-transform: uppercase; white-space: nowrap; }
-            #player-frame { align-self: center; background: #050811; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 30px 80px rgba(0,0,0,.35); justify-self: center; overflow: hidden; padding: 10px; width: min(100%, 1000px); }
-            #player-container { align-items: center; background: #02040a; border-radius: 13px; display: flex; height: min(70vh, 720px); justify-content: center; min-height: 360px; overflow: hidden; position: relative; width: 100%; }
-            #player-container::before { background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 32px 32px; content: ""; inset: 0; pointer-events: none; position: absolute; }
-            ruffle-player { max-height: 100%; max-width: 100%; position: relative; }
-            #loading { color: var(--muted); font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .08em; margin: 0; position: absolute; text-align: center; text-transform: uppercase; z-index: 1; }
+            .back:focus-visible { border-radius: 4px; outline: 2px solid var(--accent); outline-offset: 6px; }
+            .player-inset { padding: 0 12px; }
+            #player-container { align-items: center; aspect-ratio: 4 / 3; background: #000; display: flex; justify-content: center; overflow: hidden; position: relative; width: 100%; }
+            ruffle-player { display: block; height: 100%; max-height: 100%; max-width: 100%; position: relative; width: 100%; }
+            #loading { color: var(--muted); font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .08em; line-height: 1.7; margin: 0; padding: 16px; position: absolute; text-align: center; text-transform: uppercase; z-index: 1; }
             #loading.error { color: #ff9b9b; }
-            .game-footer { align-items: center; color: var(--muted); display: flex; flex-direction: column; font-family: "DM Mono", monospace; font-size: 10px; gap: 9px; justify-content: center; letter-spacing: .07em; text-align: center; text-transform: uppercase; }
-            @media (max-width: 560px) { .shell { padding: 0 18px; } main { gap: 18px; padding: 18px 0; } #player-frame { padding: 6px; } #player-container { min-height: 260px; } .game-footer { line-height: 1.5; } }
+            @media (max-width: 560px) { .game-heading {  padding: 0 4px; margin: 0 auto 20px auto; } h1 { margin-bottom: 12px; } #player-frame { border-radius: 20px; } .player-toolbar { padding: 20px 18px; } .player-inset { padding: 0 6px; } }
         </style>
     </head>
     <body>
         <div class="shell">
             <main>
-                <header>
-                    <a class="back" href="/">← Back to library</a>
+                <header class="game-heading">
+                    <h1>${title}</h1>
+                    <p class="crumb">${description}</p>
                 </header>
                 <section id="player-frame" aria-label="${title} game player">
-                    <div class="game-heading">
-                        <h1>${title}</h1>
-                        <p class="crumb">${description}</p>
+                    <nav class="player-toolbar" aria-label="Game navigation">
+                        <a class="back" href="/"><span aria-hidden="true">←</span> Back to library</a>
+                    </nav>
+                    <div class="player-inset">
+                        <div id="player-container"><p id="loading" role="status">Loading game · please wait</p></div>
                     </div>
-                    <div id="player-container"><p id="loading">Loading game · please wait</p></div>
                 </section>
-                <footer class="game-footer"><span>Audio may start muted by your browser</span><span>Ruffle emulation</span></footer>
             </main>
         </div>
         <script src="/ruffle/ruffle.js"></script>
@@ -288,7 +285,7 @@ export async function build() {
             filter: (source) => !basename(source).startsWith("."),
             recursive: true,
         }),
-        cp(join(projectRoot, "favicon.svg"), join(outputDirectory, "favicon.svg")),
+        cp(join(projectRoot, "favicon.png"), join(outputDirectory, "favicon.png")),
         copyRuntime(),
     ]);
     await writeFile(join(outputDirectory, "_headers"), "/ruffle/*.wasm\n  Content-Type: application/wasm\n");
